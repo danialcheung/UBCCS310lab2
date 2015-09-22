@@ -13,7 +13,7 @@ import play.libs.Yaml;
 public class ModelsTest extends WithApplication {
     @Before
     public void setUp() {
-    start(fakeApplication(inMemoryDatabase()));
+    start(fakeApplication(inMemoryDatabase(), fakeGlobal());
     }
 
     @Test
