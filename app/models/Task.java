@@ -33,4 +33,8 @@ public class Task extends Model {
 	task.save();
 	return task;
     }
+
+    public static List<Task> findProjectTasks(Long project) {
+    return find.where().eq("project.id", project).findList();
+}
 }
