@@ -56,4 +56,11 @@ public Result logout() {
     return redirect(routes.Application.login());
 }
 
+public Result javascriptRoutes() {
+    response().setContentType("text/javascript");
+    return ok(play.Routes.javascriptRouter("jsRouter", routes.javascript.Projects.add(),
+        routes.javascript.Projects.delete(), routes.javascript.Projects.rename(),
+        routes.javascript.Projects.addGroup()));
+}
+
 }
