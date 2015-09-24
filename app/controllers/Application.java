@@ -58,7 +58,7 @@ public Result logout() {
 
 public Result javascriptRoutes() {
     response().setContentType("text/javascript");
-    return ok(play.Routes.javascriptRouter("jsRouter", routes.javascript.Projects.add(),
+    return ok(play.Routes.javascriptRouter("jsRoutes", routes.javascript.Projects.add(),
         routes.javascript.Projects.delete(), routes.javascript.Projects.rename(),
         routes.javascript.Projects.addGroup()));
 }

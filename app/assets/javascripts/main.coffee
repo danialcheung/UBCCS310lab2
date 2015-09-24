@@ -48,7 +48,7 @@ $.fn.editInPlace = (method, options...) ->
         else
             $.error("Method " + method + " does not exist.")
 
-            class Drawer extends Backbone.View
+class Drawer extends Backbone.View
     initialize: ->
         @$el.children("li").each (i,group) ->
             new Group
@@ -63,7 +63,7 @@ $.fn.editInPlace = (method, options...) ->
                     el: $(data).appendTo("#projects")                
 
 class Group extends Backbone.View
-events:
+    events:
         "click    .toggle"          : "toggle"
         "click    .newProject"      : "newProject"
     newProject: (e) ->
@@ -106,3 +106,20 @@ class Project extends Backbone.View
         else
             this.$el.children(".delete").show()
             this.$el.children(".loader").hide()
+    events:
+        "click      .delete"        : "deleteProject"
+    deleteProject: (e) ->
+        @loading(true)
+        e.preventDefault()
+        jsRoutes.controllers.Projects.delete(@id).ajax
+            context: this
+            success: ->
+                this.$el.remove()
+                @loading(false)
+            error: (err) ->
+                @loading(false)
+                $.error("Error: " + err)
+        false
+
+$ ->
+    drawer = new Drawer el: $("#projects")     
